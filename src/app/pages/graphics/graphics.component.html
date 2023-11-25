@@ -1,1 +1,35 @@
-<p>graphics works!</p>
+<div class="row">
+  <div class="col-6">
+    <app-donut-chart
+      title="Sales"
+      [labels]="salesLabels"
+      [data]="salesData"
+    ></app-donut-chart>
+  </div>
+
+  <div class="col-6">
+    <app-donut-chart
+      title="Shopping"
+      [labels]="shoppingLabels"
+      [data]="shoppingData"
+    ></app-donut-chart>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6">
+    <app-donut-chart
+      title="Stock"
+      [labels]="stockLabels"
+      [data]="stockData"
+    ></app-donut-chart>
+  </div>
+
+  <div class="col-6">
+    <app-donut-chart
+      title="Retail"
+      [labels]="retailLabels"
+      [data]="retailData"
+    ></app-donut-chart>
+  </div>
+</div>

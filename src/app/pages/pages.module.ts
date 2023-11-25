@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { PagesRoutingModule } from './pages-routing.module';
-import { FormsModule } from '@angular/forms';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
@@ -23,12 +22,6 @@ import { ComponentsModule } from '../components/components.module';
     ProgressComponent,
     GraphicsComponent,
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    SharedModule,
-    PagesRoutingModule,
-    ComponentsModule,
-  ],
+  imports: [CommonModule, SharedModule, PagesRoutingModule, ComponentsModule],
 })
 export class PagesModule {}
