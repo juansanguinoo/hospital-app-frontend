@@ -8,6 +8,7 @@ import { PagesComponent } from './pages.component';
 import { ProgressComponent } from './progress/progress.component';
 import { GraphicsComponent } from './graphics/graphics.component';
 import { ComponentsModule } from '../components/components.module';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +16,14 @@ import { ComponentsModule } from '../components/components.module';
     PagesComponent,
     ProgressComponent,
     GraphicsComponent,
+    AccountComponent,
   ],
   exports: [
     DashboardComponent,
     PagesComponent,
     ProgressComponent,
     GraphicsComponent,
+    AccountComponent,
   ],
   imports: [CommonModule, SharedModule, PagesRoutingModule, ComponentsModule],
 })
