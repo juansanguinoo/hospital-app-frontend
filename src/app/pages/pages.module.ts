@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { PagesRoutingModule } from './pages-routing.module';
+import { FormsModule } from '@angular/forms';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
 import { ProgressComponent } from './progress/progress.component';
 import { GraphicsComponent } from './graphics/graphics.component';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,12 @@ import { GraphicsComponent } from './graphics/graphics.component';
     ProgressComponent,
     GraphicsComponent,
   ],
-  imports: [CommonModule, SharedModule, PagesRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SharedModule,
+    PagesRoutingModule,
+    ComponentsModule,
+  ],
 })
 export class PagesModule {}
