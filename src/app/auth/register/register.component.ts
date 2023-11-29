@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -9,7 +10,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  constructor(private fb: FormBuilder, private userService: UserService) {}
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   public submittedForm: boolean = false;
   public registerForm: FormGroup = this.fb.group(
@@ -34,7 +39,7 @@ export class RegisterComponent {
 
     this.userService.createUser(this.registerForm.value).subscribe({
       next: (resp) => {
-        console.log(resp);
+        this.router.navigateByUrl('/dashboard');
       },
       error: (err) => {
         Swal.fire('Error', err.error.message, 'error');

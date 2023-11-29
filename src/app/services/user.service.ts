@@ -5,14 +5,16 @@ import { environment } from 'src/environments/environments';
 import { Observable, of } from 'rxjs';
 import { LoginForm } from '../interfaces/login-form.interface';
 import { catchError, map, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 const baseUrl = environment.baseUrl;
+declare const google: any;
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   createUser(user: RegisterForm): Observable<any> {
     const url = `${baseUrl}/users/create-user`;
@@ -64,5 +66,13 @@ export class UserService {
         }),
         catchError((error: any) => of(false))
       );
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+
+    google.accounts.id.revoke('juandavidsanol@gmail.com', () => {
+      this.router.navigateByUrl('/auth/login');
+    });
   }
 }
