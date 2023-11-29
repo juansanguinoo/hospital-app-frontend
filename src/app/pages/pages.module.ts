@@ -9,8 +9,6 @@ import { ProgressComponent } from './progress/progress.component';
 import { GraphicsComponent } from './graphics/graphics.component';
 import { ComponentsModule } from '../components/components.module';
 import { AccountComponent } from './account/account.component';
-import { PromisesComponent } from './promises/promises.component';
-import { RxjsComponent } from './rxjs/rxjs.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +17,6 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     ProgressComponent,
     GraphicsComponent,
     AccountComponent,
-    PromisesComponent,
-    RxjsComponent,
   ],
   exports: [
     DashboardComponent,

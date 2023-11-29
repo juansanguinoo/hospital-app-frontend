@@ -5,7 +5,7 @@ declare function customInitFunctions(): void;
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
-  styleUrls: ['./pages.component.css'],
+  styles: [],
 })
 export class PagesComponent implements OnInit {
   constructor(private settingsService: SettingsService) {}

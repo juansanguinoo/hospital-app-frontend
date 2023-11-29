@@ -5,7 +5,7 @@ import { Subscription, filter, map } from 'rxjs';
 @Component({
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
-  styleUrls: ['./breadcrumbs.component.css'],
+  styles: [],
 })
 export class BreadcrumbsComponent implements OnDestroy {
   public title: string = '';

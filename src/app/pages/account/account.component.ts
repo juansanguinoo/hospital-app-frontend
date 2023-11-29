@@ -4,7 +4,7 @@ import { SettingsService } from 'src/app/services/settings.service';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css'],
+  styles: [],
 })
 export class AccountComponent implements OnInit {
   constructor(private settingsService: SettingsService) {}

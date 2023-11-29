@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-graphics',
   templateUrl: './graphics.component.html',
-  styleUrls: ['./graphics.component.css'],
+  styles: [],
 })
 export class GraphicsComponent {
   public salesLabels = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];

@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-handler',
   templateUrl: './handler.component.html',
-  styleUrls: ['./handler.component.css'],
+  styles: [],
 })
 export class HandlerComponent {
   @Input() progressValue: number = 0;
