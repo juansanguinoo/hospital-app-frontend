@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -7,18 +9,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private userService: UserService) {}
 
   public submittedForm: boolean = false;
-  public registerForm = this.fb.group(
+  public registerForm: FormGroup = this.fb.group(
     {
-      name: ['Juan David', [Validators.required, Validators.minLength(3)]],
-      email: ['juandavid@mail.com', [Validators.required, Validators.email]],
-      password: ['123456', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: [
-        '1234567',
-        [Validators.required, Validators.minLength(6)],
-      ],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
       termsAndConditions: [false, Validators.required],
     },
     {
@@ -33,7 +32,14 @@ export class RegisterComponent {
       return;
     }
 
-    console.log(this.registerForm);
+    this.userService.createUser(this.registerForm.value).subscribe({
+      next: (resp) => {
+        console.log(resp);
+      },
+      error: (err) => {
+        Swal.fire('Error', err.error.message, 'error');
+      },
+    });
   }
 
   invalidField(field: string): boolean {
