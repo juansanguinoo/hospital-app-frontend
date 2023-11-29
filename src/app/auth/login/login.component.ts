@@ -2,8 +2,10 @@ import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { environment } from 'src/environments/environments';
 import Swal from 'sweetalert2';
 
+const clientID = environment.clientID;
 declare const google: any;
 
 @Component({
@@ -37,9 +39,8 @@ export class LoginComponent implements AfterViewInit {
 
   googleLogin() {
     google.accounts.id.initialize({
-      client_id:
-        '50467800818-j8qdaa04kvmuo8nbemmf67ut6ikunecm.apps.googleusercontent.com',
-      callback: this.handleCredentialResponse,
+      client_id: clientID,
+      callback: (response: any) => this.handleCredentialResponse(response),
     });
     google.accounts.id.renderButton(this.googleBtn.nativeElement, {
       theme: 'outline',
@@ -48,7 +49,14 @@ export class LoginComponent implements AfterViewInit {
   }
 
   handleCredentialResponse(response: any) {
-    console.log('Encoded JWT ID token: ' + response.credential);
+    this.userService.loginWithGoogle(response.credential).subscribe({
+      next: (resp) => {
+        this.router.navigateByUrl('/dashboard');
+      },
+      error: (err) => {
+        Swal.fire('Error', err.error.message, 'error');
+      },
+    });
   }
 
   login() {
