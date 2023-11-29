@@ -4,7 +4,14 @@ import { ChartData } from 'chart.js';
 @Component({
   selector: 'app-donut-chart',
   templateUrl: './donut-chart.component.html',
-  styleUrls: ['./donut-chart.component.css'],
+  styles: [
+    `
+      .card-body {
+        max-height: 400px !important;
+        margin: 0 auto;
+      }
+    `,
+  ],
 })
 export class DonutChartComponent {
   @Input() title: string = 'Untitled';
