@@ -9,6 +9,8 @@ import { ProgressComponent } from './progress/progress.component';
 import { GraphicsComponent } from './graphics/graphics.component';
 import { ComponentsModule } from '../components/components.module';
 import { AccountComponent } from './account/account.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { AccountComponent } from './account/account.component';
     ProgressComponent,
     GraphicsComponent,
     AccountComponent,
+    ProfileComponent,
   ],
   exports: [
     DashboardComponent,
@@ -25,6 +28,12 @@ import { AccountComponent } from './account/account.component';
     GraphicsComponent,
     AccountComponent,
   ],
-  imports: [CommonModule, SharedModule, PagesRoutingModule, ComponentsModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    PagesRoutingModule,
+    ComponentsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class PagesModule {}

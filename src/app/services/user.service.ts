@@ -7,6 +7,7 @@ import { LoginForm } from '../interfaces/login-form.interface';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { User } from '../models/user.model';
+import { UpdateForm } from '../interfaces/update-form.interface';
 
 const baseUrl = environment.baseUrl;
 declare const google: any;
@@ -19,6 +20,18 @@ export class UserService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  get token(): string {
+    return localStorage.getItem('token') || '';
+  }
+
+  get uid(): string {
+    return this.user?.uid || '';
+  }
+
+  get role(): string {
+    return this.user?.role || '';
+  }
+
   createUser(user: RegisterForm): Observable<any> {
     const url = `${baseUrl}/users/create-user`;
 
@@ -27,6 +40,21 @@ export class UserService {
         localStorage.setItem('token', resp['token']);
       })
     );
+  }
+
+  updateUser(user: UpdateForm): Observable<any> {
+    const url = `${baseUrl}/users/update-user/${this.uid}`;
+
+    user = {
+      ...user,
+      role: this.role,
+    };
+
+    return this.http.put(url, user, {
+      headers: {
+        'x-token': this.token,
+      },
+    });
   }
 
   login(user: LoginForm): Observable<any> {
@@ -50,14 +78,12 @@ export class UserService {
   }
 
   verifyJWT(): Observable<boolean> {
-    const token = localStorage.getItem('token') || '';
-
     const url = `${baseUrl}/auth/verify-jwt`;
 
     return this.http
       .get(url, {
         headers: {
-          'x-token': token,
+          'x-token': this.token,
         },
       })
       .pipe(

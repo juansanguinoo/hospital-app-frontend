@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { GraphicsComponent } from './graphics/graphics.component';
 import { AccountComponent } from './account/account.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,11 @@ const routes: Routes = [
         path: 'account',
         component: AccountComponent,
         data: { title: 'Account Settings' },
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        data: { title: 'Profile' },
       },
     ],
   },
