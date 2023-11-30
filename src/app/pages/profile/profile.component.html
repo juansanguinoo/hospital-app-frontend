@@ -54,9 +54,22 @@
         <h4 class="card-title">Avatar</h4>
         <h6 class="card-subtitle">User image</h6>
 
-        <img src="" alt="" />
+        <div class="text-center">
+          <img
+            *ngIf="!tempImage"
+            [src]="user?.imageUrl"
+            alt="avatar"
+            class="img-avatar"
+          />
+          <img
+            *ngIf="tempImage"
+            [src]="tempImage"
+            alt="avatar"
+            class="img-avatar"
+          />
+        </div>
 
-        <input type="file" />
+        <input type="file" class="mt-2" (change)="handleImage($event)" />
 
         <br />
         <br />
@@ -64,6 +77,8 @@
         <button
           type="button"
           class="btn btn-success btn-block waves-effect waves-light m-r-10"
+          [disabled]="!image"
+          (click)="uploadImage()"
         >
           <i class="fa fa-save"></i>
           Save
