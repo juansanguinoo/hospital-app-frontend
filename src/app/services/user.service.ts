@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { LoginForm } from '../interfaces/login-form.interface';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { User } from '../models/user.model';
 
 const baseUrl = environment.baseUrl;
 declare const google: any;
@@ -14,6 +15,8 @@ declare const google: any;
   providedIn: 'root',
 })
 export class UserService {
+  public user: User | undefined;
+
   constructor(private http: HttpClient, private router: Router) {}
 
   createUser(user: RegisterForm): Observable<any> {
@@ -58,10 +61,12 @@ export class UserService {
         },
       })
       .pipe(
-        tap((resp: any) => {
+        map((resp: any) => {
+          const { email, google, name, role, img, _id } = resp['user'];
+
+          this.user = new User(name, email, '', role, google, img, _id);
+
           localStorage.setItem('token', resp['token']);
-        }),
-        map((resp) => {
           return true;
         }),
         catchError((error: any) => of(false))
