@@ -6,6 +6,8 @@
           type="text"
           placeholder="Search by users..."
           class="form-control"
+          #search
+          (keyup)="handleSearch(search.value)"
         />
       </div>
     </div>
@@ -80,13 +82,15 @@
             </tbody>
           </table>
         </div>
-        <button (click)="handleChangePage(-5)" class="btn btn-secondary">
-          Previous
-        </button>
-        &nbsp;
-        <button (click)="handleChangePage(5)" class="btn btn-secondary">
-          Next
-        </button>
+        <div *ngIf="search.value.length === 0">
+          <button (click)="handleChangePage(-5)" class="btn btn-secondary">
+            Previous
+          </button>
+          &nbsp;
+          <button (click)="handleChangePage(5)" class="btn btn-secondary">
+            Next
+          </button>
+        </div>
       </div>
     </div>
   </div>

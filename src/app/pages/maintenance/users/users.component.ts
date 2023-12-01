@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
+import { SearchService } from 'src/app/services/search.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,7 +14,10 @@ export class UsersComponent implements OnInit {
   public from: number = 0;
   public loading: boolean = true;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private searchService: SearchService
+  ) {}
 
   ngOnInit(): void {
     this.getUsers();
@@ -38,5 +42,15 @@ export class UsersComponent implements OnInit {
     }
 
     this.getUsers();
+  }
+
+  handleSearch(value: string) {
+    if (value.length === 0) {
+      return this.getUsers();
+    }
+
+    this.searchService.filter(value, 'users').subscribe((users) => {
+      this.users = users;
+    });
   }
 }
