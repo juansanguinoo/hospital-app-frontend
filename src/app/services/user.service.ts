@@ -110,7 +110,7 @@ export class UserService {
     const url = `${baseUrl}/users/get-users?from=${from}`;
 
     return this.http.get<GetUsersResponse>(url, this.headers).pipe(
-      delay(1500),
+      delay(500),
       map((resp) => {
         const users = resp.users.map(
           (user) =>
