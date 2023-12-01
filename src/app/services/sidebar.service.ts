@@ -14,6 +14,15 @@ export class SidebarService {
         { title: 'Graphics', url: '/dashboard/graphics' },
       ],
     },
+    {
+      title: 'Maintenance',
+      icon: 'mdi mdi-folder-lock-open',
+      submenu: [
+        { title: 'Users', url: '/dashboard/users' },
+        { title: 'Hospitals', url: '/dashboard/hospitals' },
+        { title: 'Doctors', url: '/dashboard/doctors' },
+      ],
+    },
   ];
 
   constructor() {}

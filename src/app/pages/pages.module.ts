@@ -11,6 +11,7 @@ import { ComponentsModule } from '../components/components.module';
 import { AccountComponent } from './account/account.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UsersComponent } from './maintenance/users/users.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     GraphicsComponent,
     AccountComponent,
     ProfileComponent,
+    UsersComponent,
   ],
   exports: [
     DashboardComponent,

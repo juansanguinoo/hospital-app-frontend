@@ -7,6 +7,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { GraphicsComponent } from './graphics/graphics.component';
 import { AccountComponent } from './account/account.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './maintenance/users/users.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,11 @@ const routes: Routes = [
         path: 'profile',
         component: ProfileComponent,
         data: { title: 'Profile' },
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
+        data: { title: 'Usuarios' },
       },
     ],
   },
