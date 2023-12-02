@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { SearchService } from 'src/app/services/search.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-users',
@@ -51,6 +52,46 @@ export class UsersComponent implements OnInit {
 
     this.searchService.filter(value, 'users').subscribe((users) => {
       this.users = users;
+    });
+  }
+
+  handleDeleteUser(user: User) {
+    if (user._id === this.userService.uid) {
+      return Swal.fire(
+        'No puede borrar usuario',
+        'No se puede borrar a sí mismo',
+        'error'
+      );
+    }
+
+    return Swal.fire({
+      title: '¿Estás seguro?',
+      text: `Estás a punto de borrar a ${user.name}`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, borrar',
+      cancelButtonText: 'No, cancelar',
+    }).then((result) => {
+      if (result.value) {
+        this.userService.deleteUser(user._id!).subscribe(() => {
+          this.getUsers();
+          Swal.fire(
+            'Usuario borrado',
+            `El usuario ${user.name} ha sido borrado`,
+            'success'
+          );
+        });
+      }
+    });
+  }
+
+  handleChangeRole(user: User) {
+    this.userService.updateRole(user).subscribe(() => {
+      Swal.fire(
+        'Rol actualizado',
+        `El rol de ${user.name} ha sido actualizado`,
+        'success'
+      );
     });
   }
 }

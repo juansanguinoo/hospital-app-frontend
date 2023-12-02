@@ -32,8 +32,9 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile() {
-    this.userService.updateUser(this.profileForm.value).subscribe(
-      (resp) => {
+    this.userService.updateUser(this.profileForm.value).subscribe({
+      next: (resp) => {
+        console.log(resp);
         const { name, email } = this.profileForm.value;
         if (this.user) {
           this.user.name = name;
@@ -42,10 +43,11 @@ export class ProfileComponent implements OnInit {
           Swal.fire('Success', 'Profile updated successfully', 'success');
         }
       },
-      (error) => {
+      error: (error) => {
+        console.log(error);
         Swal.fire('Error', error.error.message, 'error');
-      }
-    );
+      },
+    });
   }
 
   handleImage(event: any) {
@@ -72,7 +74,7 @@ export class ProfileComponent implements OnInit {
   uploadImage() {
     if (this.user) {
       this.uploadService
-        .updateImage(this.image!, 'users', this.user.uid!)
+        .updateImage(this.image!, 'users', this.user._id!)
         .then((img) => {
           this.user!.img = img.fileName;
           Swal.fire('Success', 'Image updated successfully', 'success');

@@ -26,7 +26,7 @@ export class UserService {
   }
 
   get uid(): string {
-    return this.user?.uid || '';
+    return this.user?._id || '';
   }
 
   get role(): string {
@@ -121,7 +121,7 @@ export class UserService {
               user.role,
               user.google,
               user.img,
-              user.uid
+              user._id
             )
         );
         return {
@@ -130,5 +130,17 @@ export class UserService {
         };
       })
     );
+  }
+
+  deleteUser(uid: string): Observable<any> {
+    const url = `${baseUrl}/users/delete-user/${uid}`;
+
+    return this.http.delete(url, this.headers);
+  }
+
+  updateRole(user: User): Observable<any> {
+    const url = `${baseUrl}/users/update-user/${user._id}`;
+
+    return this.http.put(url, user, this.headers);
   }
 }
