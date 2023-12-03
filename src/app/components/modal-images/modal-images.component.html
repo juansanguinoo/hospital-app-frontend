@@ -22,7 +22,24 @@
           </button>
         </div>
         <div class="modal-body">
-          <h3>Select an image</h3>
+          <div class="text-center">
+            <img
+              *ngIf="!tempImage"
+              [src]="tempImage"
+              alt="avatar"
+              class="img-avatar"
+              [src]="modalService.image"
+            />
+
+            <img
+              *ngIf="tempImage"
+              [src]="tempImage"
+              alt="avatar"
+              class="img-avatar"
+            />
+          </div>
+
+          <input type="file" class="mt-2" (change)="handleImage($event)" />
         </div>
         <div class="modal-footer">
           <button
@@ -37,6 +54,7 @@
             type="button"
             class="btn btn-danger waves-effect text-left"
             data-dismiss="modal"
+            (click)="uploadImage()"
           >
             Save
           </button>
