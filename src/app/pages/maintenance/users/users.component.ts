@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
+import { ModalService } from 'src/app/services/modal.service';
 import { SearchService } from 'src/app/services/search.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
@@ -17,7 +18,8 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
@@ -93,5 +95,9 @@ export class UsersComponent implements OnInit {
         'success'
       );
     });
+  }
+
+  openModal(user: User) {
+    this.modalService.openModal();
   }
 }

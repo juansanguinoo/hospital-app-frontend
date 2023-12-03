@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-modal-images',
   templateUrl: './modal-images.component.html',
-  styleUrls: ['./modal-images.component.css'],
+  styles: [],
 })
 export class ModalImagesComponent {
-  public showModal: boolean = false;
+  constructor(public modalService: ModalService) {}
 
-  constructor() {}
-
-  handleModal() {
-    this.showModal = true;
+  closeModal() {
+    this.modalService.closeModal();
   }
 }

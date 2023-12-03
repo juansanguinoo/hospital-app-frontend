@@ -1,4 +1,4 @@
-<div class="modal-bg" [class.hidden]="showModal">
+<div class="modal-bg" [class.hidden]="modalService.toggleModal">
   <div
     class="modal fade show"
     tabindex="-1"
@@ -16,7 +16,7 @@
             class="close"
             data-dismiss="modal"
             aria-hidden="true"
-            (click)="handleModal()"
+            (click)="closeModal()"
           >
             ×
           </button>
@@ -29,7 +29,7 @@
             type="button"
             class="btn btn-danger waves-effect text-left"
             data-dismiss="modal"
-            (click)="handleModal()"
+            (click)="closeModal()"
           >
             Close
           </button>
