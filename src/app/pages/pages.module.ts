@@ -13,6 +13,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './maintenance/users/users.component';
 import { FormsModule } from '@angular/forms';
+import { ModalImagesComponent } from '../components/modal-images/modal-images.component';
 
 @NgModule({
   declarations: [
