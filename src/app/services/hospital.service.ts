@@ -32,4 +32,22 @@ export class HospitalService {
       .get<GetHospitalsResponse>(url, this.headers)
       .pipe(map((res) => res.hospitals));
   }
+
+  createHospital(name: string): Observable<Hospital> {
+    const url = `${baseUrl}/hospital/create-hospital`;
+
+    return this.http.post<Hospital>(url, { name }, this.headers);
+  }
+
+  updateHospital(name: string, id: string): Observable<Hospital> {
+    const url = `${baseUrl}/hospital/update-hospital/${id}`;
+
+    return this.http.put<Hospital>(url, { name }, this.headers);
+  }
+
+  deleteHospital(id: string): Observable<void> {
+    const url = `${baseUrl}/hospital/delete-hospital/${id}`;
+
+    return this.http.delete<void>(url, this.headers);
+  }
 }
