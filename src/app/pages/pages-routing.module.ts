@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './maintenance/users/users.component';
 import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
 import { DoctorsComponent } from './maintenance/doctors/doctors.component';
+import { CardDoctorComponent } from './maintenance/doctors/card-doctor/card-doctor.component';
 
 const routes: Routes = [
   {
@@ -59,6 +60,11 @@ const routes: Routes = [
       {
         path: 'doctors',
         component: DoctorsComponent,
+        data: { title: 'Hospitales' },
+      },
+      {
+        path: 'doctors/:id',
+        component: CardDoctorComponent,
         data: { title: 'Hospitales' },
       },
     ],

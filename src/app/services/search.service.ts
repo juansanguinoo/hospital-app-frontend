@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environments';
 import { map } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { Hospital } from '../models/hospital.model';
+import { Doctor } from '../models/doctor.model';
 
 const baseUrl = environment.baseUrl;
 
@@ -45,6 +46,10 @@ export class SearchService {
     return hospitals;
   }
 
+  private mapperDoctors(doctors: any[]): Doctor[] {
+    return doctors;
+  }
+
   filter(
     query: string,
     model: 'users' | 'hospitals' | 'doctors'
@@ -58,6 +63,8 @@ export class SearchService {
             return this.mapperUsers(resp.results);
           case 'hospitals':
             return this.mapperHospitals(resp.results);
+          case 'doctors':
+            return this.mapperDoctors(resp.results);
           default:
             return [];
         }

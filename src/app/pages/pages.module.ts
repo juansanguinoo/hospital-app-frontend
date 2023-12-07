@@ -17,6 +17,7 @@ import { ModalImagesComponent } from '../components/modal-images/modal-images.co
 import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
 import { DoctorsComponent } from './maintenance/doctors/doctors.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { CardDoctorComponent } from './maintenance/doctors/card-doctor/card-doctor.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PipesModule } from '../pipes/pipes.module';
     UsersComponent,
     HospitalsComponent,
     DoctorsComponent,
+    CardDoctorComponent,
   ],
   exports: [
     DashboardComponent,
