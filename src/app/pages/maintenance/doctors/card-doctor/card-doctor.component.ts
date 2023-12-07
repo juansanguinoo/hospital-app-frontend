@@ -11,6 +11,7 @@ import { HospitalService } from 'src/app/services/hospital.service';
 export class CardDoctorComponent implements OnInit {
   public doctorForm: FormGroup = new FormGroup({});
   public hospitals: Hospital[] = [];
+  public selectedHospital: Hospital = new Hospital('');
 
   constructor(
     private fb: FormBuilder,
@@ -20,6 +21,15 @@ export class CardDoctorComponent implements OnInit {
   ngOnInit(): void {
     this.formInit();
     this.getHospitals();
+    this.handleHospitalChange();
+  }
+
+  handleHospitalChange(): void {
+    this.doctorForm.get('hospital')?.valueChanges.subscribe((res) => {
+      this.selectedHospital = this.hospitals.find(
+        (hospital) => hospital._id === res
+      )!;
+    });
   }
 
   formInit(): void {
