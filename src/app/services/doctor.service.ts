@@ -34,20 +34,29 @@ export class DoctorService {
   }
 
   createHospital(doctor: Doctor): Observable<Doctor> {
+    const { name, hospital } = doctor;
+
     const url = `${baseUrl}/doctor/create-doctor`;
 
-    return this.http.post<Doctor>(url, { doctor }, this.headers);
+    return this.http.post<Doctor>(url, { name, hospital }, this.headers);
   }
 
   updateDoctor(doctor: Doctor): Observable<Doctor> {
+    const { name, hospital } = doctor;
     const url = `${baseUrl}/doctor/update-doctor/${doctor._id}`;
 
-    return this.http.put<Doctor>(url, { doctor }, this.headers);
+    return this.http.put<Doctor>(url, { name, hospital }, this.headers);
   }
 
   deleteDoctor(id: string): Observable<void> {
     const url = `${baseUrl}/doctor/delete-doctor/${id}`;
 
     return this.http.delete<void>(url, this.headers);
+  }
+
+  getDoctorById(id: string): Observable<Doctor> {
+    const url = `${baseUrl}/doctor/get-doctor/${id}`;
+
+    return this.http.get<Doctor>(url, this.headers);
   }
 }

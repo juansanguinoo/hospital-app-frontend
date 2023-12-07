@@ -9,13 +9,17 @@
           [formGroup]="doctorForm"
           (submit)="handleSubmit()"
         >
-          <div class="form-group row">
+          <div class="form-group row" *ngIf="selectedDoctor">
             <label for="exampleInputuname3" class="col-sm-3 control-label"
               >Avatar*</label
             >
             <div class="col-sm-9">
               <div class="input-group">
-                <img src="" alt="" class="w200" />
+                <img
+                  [src]="selectedDoctor.img | image : 'doctors'"
+                  alt=""
+                  class="w200"
+                />
               </div>
             </div>
           </div>
