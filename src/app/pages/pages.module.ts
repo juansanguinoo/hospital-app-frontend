@@ -14,6 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './maintenance/users/users.component';
 import { FormsModule } from '@angular/forms';
 import { ModalImagesComponent } from '../components/modal-images/modal-images.component';
+import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
+import { DoctorsComponent } from './maintenance/doctors/doctors.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { ModalImagesComponent } from '../components/modal-images/modal-images.co
     AccountComponent,
     ProfileComponent,
     UsersComponent,
+    HospitalsComponent,
+    DoctorsComponent,
   ],
   exports: [
     DashboardComponent,

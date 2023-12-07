@@ -8,6 +8,8 @@ import { GraphicsComponent } from './graphics/graphics.component';
 import { AccountComponent } from './account/account.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './maintenance/users/users.component';
+import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
+import { DoctorsComponent } from './maintenance/doctors/doctors.component';
 
 const routes: Routes = [
   {
@@ -48,6 +50,16 @@ const routes: Routes = [
         path: 'users',
         component: UsersComponent,
         data: { title: 'Usuarios' },
+      },
+      {
+        path: 'hospitals',
+        component: HospitalsComponent,
+        data: { title: 'Hospitales' },
+      },
+      {
+        path: 'doctors',
+        component: DoctorsComponent,
+        data: { title: 'Hospitales' },
       },
     ],
   },
