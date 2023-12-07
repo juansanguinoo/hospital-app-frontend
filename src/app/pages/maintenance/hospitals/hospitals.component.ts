@@ -3,6 +3,7 @@ import { Subscription, delay } from 'rxjs';
 import { Hospital } from 'src/app/models/hospital.model';
 import { HospitalService } from 'src/app/services/hospital.service';
 import { ModalService } from 'src/app/services/modal.service';
+import { SearchService } from 'src/app/services/search.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,7 +18,8 @@ export class HospitalsComponent implements OnInit, OnDestroy {
 
   constructor(
     private hospitalService: HospitalService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private searchService: SearchService
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +35,16 @@ export class HospitalsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.$img.unsubscribe();
+  }
+
+  handleSearch(value: string) {
+    if (value.length === 0) {
+      return this.getHospitals();
+    }
+
+    this.searchService.filter(value, 'hospitals').subscribe((hospitals) => {
+      this.hospitals = hospitals;
+    });
   }
 
   getHospitals() {
