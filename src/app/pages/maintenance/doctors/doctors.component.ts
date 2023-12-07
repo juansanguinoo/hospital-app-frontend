@@ -4,6 +4,7 @@ import { Doctor } from 'src/app/models/doctor.model';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { SearchService } from 'src/app/services/search.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-doctors',
@@ -60,6 +61,28 @@ export class DoctorsComponent implements OnInit, OnDestroy {
 
     this.searchService.filter(value, 'doctors').subscribe((doctors) => {
       this.doctors = doctors;
+    });
+  }
+
+  deleteDoctor(doctor: Doctor) {
+    return Swal.fire({
+      title: '¿Estás seguro?',
+      text: `Estás a punto de borrar a ${doctor.name}`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, borrar',
+      cancelButtonText: 'No, cancelar',
+    }).then((result) => {
+      if (result.value) {
+        this.doctorService.deleteDoctor(doctor._id!).subscribe(() => {
+          this.getDoctors();
+          Swal.fire(
+            'Usuario borrado',
+            `El usuario ${doctor.name} ha sido borrado`,
+            'success'
+          );
+        });
+      }
     });
   }
 }
