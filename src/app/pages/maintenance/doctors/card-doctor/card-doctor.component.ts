@@ -3,8 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-card-doctor',
   templateUrl: './card-doctor.component.html',
-  styleUrls: ['./card-doctor.component.css']
+  styles: [],
 })
-export class CardDoctorComponent {
-
-}
+export class CardDoctorComponent {}
