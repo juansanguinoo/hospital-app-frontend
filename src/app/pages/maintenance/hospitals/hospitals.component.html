@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<div class="row animated fadeIn">
+<div class="row animated fadeIn" *ngIf="loading">
   <div class="col-12">
     <div class="alert alert-info text-center">
       <h4 class="alert-heading">Loading...</h4>
@@ -22,11 +22,11 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="!loading">
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Hospitals</h4>
+        <h4 class="card-title">Hospitals {{ hospitals.length }}</h4>
         <h6 class="card-subtitle">
           Register new hospitals and manage their roles and permissions
         </h6>
@@ -34,26 +34,30 @@
           <table class="table table-bordered">
             <thead>
               <tr>
-                <th>Photo</th>
+                <th class="w100">Photo</th>
                 <th>Name</th>
-                <th class="text-nowrap">Action</th>
+                <th class="text-nowrap">Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Aliquam, repudiandae.
+              <tr *ngFor="let hospital of hospitals">
+                <td class="text-center">
+                  <img
+                    [src]="hospital.img | image : 'hospitals'"
+                    [alt]="hospital.name"
+                    class="avatar cursor"
+                  />
                 </td>
                 <td>
                   <input
                     type="text"
                     class="form-control"
                     placeholder="Hospital name"
+                    [(ngModel)]="hospital.name"
                   />
                 </td>
                 <td class="text-nowrap text-center">
-                  <a href="#" data-toggle="tooltip" data-original-title="Edit">
+                  <a href="#" data-toggle="tooltip" data-original-title="Save">
                     <i class="fa fa-pencil text-inverse m-r-10"></i>
                   </a>
                   <a
@@ -68,9 +72,6 @@
             </tbody>
           </table>
         </div>
-        <button class="btn btn-secondary">Next</button>
-        &nbsp;
-        <button class="btn btn-secondary">Previous</button>
       </div>
     </div>
   </div>

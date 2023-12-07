@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { ModalImagesComponent } from '../components/modal-images/modal-images.component';
 import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
 import { DoctorsComponent } from './maintenance/doctors/doctors.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { DoctorsComponent } from './maintenance/doctors/doctors.component';
     ComponentsModule,
     ReactiveFormsModule,
     FormsModule,
+    PipesModule,
   ],
 })
 export class PagesModule {}
