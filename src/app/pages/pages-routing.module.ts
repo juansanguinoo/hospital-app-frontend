@@ -11,6 +11,7 @@ import { UsersComponent } from './maintenance/users/users.component';
 import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
 import { DoctorsComponent } from './maintenance/doctors/doctors.component';
 import { CardDoctorComponent } from './maintenance/doctors/card-doctor/card-doctor.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,11 @@ const routes: Routes = [
         path: 'doctors/:id',
         component: CardDoctorComponent,
         data: { title: 'Hospitales' },
+      },
+      {
+        path: 'search/:value',
+        component: SearchComponent,
+        data: { title: 'Search' },
       },
     ],
   },

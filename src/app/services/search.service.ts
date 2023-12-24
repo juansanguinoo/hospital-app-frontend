@@ -71,4 +71,10 @@ export class SearchService {
       })
     );
   }
+
+  search(query: string): Observable<any> {
+    const url = `${baseUrl}/search/${query}`;
+
+    return this.http.get(url, this.headers);
+  }
 }
