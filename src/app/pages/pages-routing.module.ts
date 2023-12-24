@@ -12,6 +12,7 @@ import { HospitalsComponent } from './maintenance/hospitals/hospitals.component'
 import { DoctorsComponent } from './maintenance/doctors/doctors.component';
 import { CardDoctorComponent } from './maintenance/doctors/card-doctor/card-doctor.component';
 import { SearchComponent } from './search/search.component';
+import { adminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -52,6 +53,7 @@ const routes: Routes = [
         path: 'users',
         component: UsersComponent,
         data: { title: 'Usuarios' },
+        canActivate: [adminGuard],
       },
       {
         path: 'hospitals',

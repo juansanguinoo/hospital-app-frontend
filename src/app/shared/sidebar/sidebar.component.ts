@@ -9,14 +9,12 @@ import { UserService } from 'src/app/services/user.service';
   styles: [],
 })
 export class SidebarComponent {
-  public menuItems: any[] = [];
   public user: User | undefined;
 
   constructor(
-    private sidebarService: SidebarService,
+    public sidebarService: SidebarService,
     private userService: UserService
   ) {
-    this.menuItems = sidebarService.menu;
     this.user = userService.user;
   }
 }

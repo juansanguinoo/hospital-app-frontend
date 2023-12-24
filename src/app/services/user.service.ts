@@ -41,6 +41,11 @@ export class UserService {
     };
   }
 
+  saveLocalStorage(token: string, menu: any): void {
+    localStorage.setItem('token', token);
+    localStorage.setItem('menu', JSON.stringify(menu));
+  }
+
   createUser(user: RegisterForm): Observable<any> {
     const url = `${baseUrl}/users/create-user`;
 
@@ -67,7 +72,7 @@ export class UserService {
 
     return this.http.post(url, user).pipe(
       tap((resp: any) => {
-        localStorage.setItem('token', resp['token']);
+        this.saveLocalStorage(resp['token'], resp['menu']);
       })
     );
   }
@@ -77,7 +82,7 @@ export class UserService {
 
     return this.http.post(url, { token }).pipe(
       tap((resp: any) => {
-        localStorage.setItem('token', resp['token']);
+        this.saveLocalStorage(resp['token'], resp['menu']);
       })
     );
   }
@@ -91,7 +96,7 @@ export class UserService {
 
         this.user = new User(name, email, '', role, google, img, _id);
 
-        localStorage.setItem('token', resp['token']);
+        this.saveLocalStorage(resp['token'], resp['menu']);
         return true;
       }),
       catchError((error: any) => of(false))
@@ -100,6 +105,7 @@ export class UserService {
 
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('menu');
 
     google.accounts.id.revoke('juandavidsanol@gmail.com', () => {
       this.router.navigateByUrl('/auth/login');
